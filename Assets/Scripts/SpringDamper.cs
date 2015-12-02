@@ -25,6 +25,6 @@ public class SpringDamper : MonoBehaviour
 	{
 		float forceSpring = -SpringConstant * (RestLength - RestLength);
 		float dampingForce = -DampingFactor * (p1.velocity - p2.velocity);
-		//float springDamper = 
+		float springDamper = 
 	}
 }
