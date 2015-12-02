@@ -18,12 +18,13 @@ public class SpringDamper : MonoBehaviour
 	// Spring Damper = l_o = rest length
 	
 	// Force Spring = Spring Constant( Length - Length)
-	// Force Damp = Damping Factor = Damping Factor(
+	// Force Damp = Damping Factor = Damping Factor(velocity1 - velocity2);
+	// Spring-Damper = by adding Spring Constant & Damping Factor together. = (-Spring Constant( Length - Length)) +  (-Damping Factor(velocity1 - velocity2));
 	
 	public void ComputeForce()
 	{
-		float forceSpring = SpringConstant * (RestLength - RestLength);
-		//float dampingForce = DampingFactor * (p1.velocity - p2.velocity);
+		float forceSpring = -SpringConstant * (RestLength - RestLength);
+		float dampingForce = -DampingFactor * (p1.velocity - p2.velocity);
 		//float springDamper = 
 	}
 }
