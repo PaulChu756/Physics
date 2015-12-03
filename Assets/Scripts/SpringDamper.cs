@@ -23,8 +23,13 @@ public class SpringDamper : MonoBehaviour
 	
 	public void ComputeForce()
 	{
-		float forceSpring = -SpringConstant * (RestLength - RestLength);
-		float dampingForce = -DampingFactor * (p1.velocity - p2.velocity);
-		float springDamper = 
+        Vector3 e;
+        Vector3 l;
+
+        e.normalized = p2.position - p1.position;
+        l = Mathf.Abs(e);
+		//float forceSpring = -SpringConstant * (RestLength - RestLength);
+		//float dampingForce = -DampingFactor * (p1.velocity - p2.velocity);
+		//float springDamper = 
 	}
 }

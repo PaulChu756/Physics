@@ -7,8 +7,8 @@ public class Particle : MonoBehaviour
 {
 	public Vector3 position;
 	public Vector3 velocity;
-	public Vector3 force;
-	public Vector3 acceleration;
+    public Vector3 acceleration;
+    public Vector3 force;
 	public float mass;
 	
 	// r = pos
@@ -26,9 +26,8 @@ public class Particle : MonoBehaviour
 		acceleration = (1 / mass) * force;
 	}
 	
-	public void Force ()
-	{
-		// F = ma;
+	public void Force () // F = ma;
+    {
 		force = mass * acceleration;
 	}
 	
