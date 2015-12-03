@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SpringDamper : MonoBehaviour 
 {
-	public float SpringConstant, DampingFactor, RestLength;
+    public float SpringConstant, DampingFactor;
+    public Vector3 RestLength;
 	Particle p1, p2;
 	
 	// r = pos
@@ -20,15 +21,12 @@ public class SpringDamper : MonoBehaviour
 	// Force Spring = Spring Constant( Length - Length)
 	// Force Damp = Damping Factor = Damping Factor(velocity1 - velocity2);
 	// Spring-Damper = by adding Spring Constant & Damping Factor together. = (-Spring Constant( Length - Length)) +  (-Damping Factor(velocity1 - velocity2));
+
+    // spring force = -k * d || k = force but number is scaler. d = displacement, number is vector
 	
 	public void ComputeForce()
 	{
-        Vector3 e;
-        Vector3 l;
-
-        e.normalized = p2.position - p1.position;
-        l = Mathf.Abs(e);
-		//float forceSpring = -SpringConstant * (RestLength - RestLength);
+		Vector3 forceSpring = -SpringConstant * (RestLength - RestLength);
 		//float dampingForce = -DampingFactor * (p1.velocity - p2.velocity);
 		//float springDamper = 
 	}
