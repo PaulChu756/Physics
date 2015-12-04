@@ -9,14 +9,13 @@ public class SpringDamper : MonoBehaviour
     // Spring constant = Ks
     // Damping Factor = Kd
     // Rest Length = l
-
     // spring force = -k * d || k = force but number is scaler. d = displacement, number is vector
 
     public void ComputeForce()
     {
         // Spring Force
         // Get the distance between two particles
-        // So first we p2 Pos - p1 pos
+        // So first we use  p2 Pos - p1 pos
         // Then we normalized e
         // Then use Vector.Distance to find out the distance between particles, in order to get the length
         // After getting the length, use in equation to get Spring Force.
@@ -25,8 +24,11 @@ public class SpringDamper : MonoBehaviour
         float distanceBetween = Vector3.Distance(p1.position, p2.position);
         float forceSpring = -springConstant * (RestLength - distanceBetween);
 
-        // Linear Damping Force = -dampingFactor (v1 - v2)
-        // Turn 1D Velocities
+        // Linear Damping Force
+        // Kd = -dampingFactor (v1 - v2)
+        // Turn 3D distances & velocities to 1D
+        // Compute spring force in 1D
+        // turn 1D force back into 3D force
         float v1 = Vector3.Dot(l, p1.velocity);
         float v2 = Vector3.Dot(l, p2.velocity);
         float dampingForce = -dampingFactor * (v1 - v2);
@@ -40,21 +42,21 @@ public class SpringDamper : MonoBehaviour
         p1.force += force1;
         p2.force += force2;
 
-            // Aerodynamic drag force
-     Vector3 F_aero;
-     Vector3 p;
-     Vector3 c;
-     Vector3 a;
-     //Vector3 e;
+        //Vector3 F_aero;
+        //Vector3 p;
+        //Vector3 c;
+        //Vector3 a;
+        //Vector3 e;
     }
 }
 
-        // p = density of air or water
-        // c = coefficient of drag for the object
-        // a = cross sectional area of the object
-        // e = unity vector in the opposite direction of the velocity // Changed to n for some reason.
-        // What the hell is V... Velocity?!?!?
+// Aerodynamic drag force
+// p = density of air or water
+// c = coefficient of drag for the object
+// a = cross sectional area of the object
+// e = unity vector in the opposite direction of the velocity // Changed to n for some reason.
+// What the hell is V... Velocity?!?!?
 
-        // Using triangles for surface area
-        // find velocity, normal, and area of triangle.
+// Using triangles for surface area
+// find velocity, normal, and area of triangle.
 
