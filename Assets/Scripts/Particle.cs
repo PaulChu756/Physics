@@ -6,11 +6,10 @@ using System.Collections;
 public class Particle : MonoBehaviour 
 {
 	public Vector3 position;
-	public Vector3 velocity;
     public Vector3 nextPosition;
+    public Vector3 velocity;
     public Vector3 nextVelocity;
     public Vector3 acceleration;
-    public Vector3 forceGravity;
     public Vector3 force;
 	public float mass;
 	
@@ -26,7 +25,7 @@ public class Particle : MonoBehaviour
 	
 	public void Acceleration()
 	{
-        acceleration = (1 / mass) * force;
+        acceleration = force / mass;
 	}
 	
 	public void Force () // F = ma;
@@ -46,10 +45,4 @@ public class Particle : MonoBehaviour
         nextPosition = position + (nextVelocity * Time.deltaTime);
         transform.position = nextPosition;
 	}
-
-    public void Gravity()
-    {
-        Vector3 g = new Vector3(0, -9.8f, 0);
-        forceGravity = mass * g;
-    }
 }

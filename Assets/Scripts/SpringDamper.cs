@@ -45,7 +45,7 @@ public class SpringDamper : MonoBehaviour
      Vector3 p;
      Vector3 c;
      Vector3 a;
-     Vector3 e;
+     //Vector3 e;
     }
 }
 
