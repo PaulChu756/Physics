@@ -5,9 +5,9 @@ using System.Collections;
 
 public class Particle : MonoBehaviour 
 {
-	public Vector3 position;
+	public Vector3 position; // current pos of the particle in space
     public Vector3 nextPosition;
-    public Vector3 velocity;
+    public Vector3 velocity; // current velocity of the particle 
     public Vector3 nextVelocity;
     public Vector3 acceleration;
     public Vector3 force;

@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 202281021}
   - 114: {fileID: 202281020}
   m_Layer: 0
-  m_Name: ParticleSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,19 +112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e28623ab2176fd4d93c1e9e5ba15f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpringDamper: {fileID: 143174, guid: 7e20ede4d830ee248b827cdf3b989ef2, type: 2}
-  P1: {fileID: 158646, guid: 9fc0a8145960af54fba7dfe6cdeb6e2b, type: 2}
-  P2: {fileID: 158646, guid: 9fc0a8145960af54fba7dfe6cdeb6e2b, type: 2}
-  particleList: []
-  springdamp: []
-  k: 0
-  d: 0
-  b: 0
-  stiff: 0
-  rows: 5
-  cols: 5
-  width: 20
-  length: 20
+  particles: []
+  springs: []
+  particle: {fileID: 11419046, guid: 9fc0a8145960af54fba7dfe6cdeb6e2b, type: 2}
+  spring: {fileID: 11412100, guid: 7e20ede4d830ee248b827cdf3b989ef2, type: 2}
+  width: 5
+  height: 5
 --- !u!4 &202281021
 Transform:
   m_ObjectHideFlags: 0
@@ -283,30 +276,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &1207798821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1207798822}
-  m_Layer: 0
-  m_Name: SpringDamperSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1207798822
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1207798821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
