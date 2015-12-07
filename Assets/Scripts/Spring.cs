@@ -6,18 +6,12 @@ public class Spring : MonoBehaviour
     public float springConstant; // springConstant, a constant for how "strong" the spring is.
     public float dampingFactor; // dampingConstant, // a constant for slowing down motion of the spring.
     public float RestLength;
-    Particle p1, p2, A, B;
+    public Particle p1, p2;
 
-    public Spring(Particle P1, Particle P2)
+    public void makeSpring(Particle P1, Particle P2)
     {
         p1 = P1;
         p2 = P2;
-    }
-
-    public void makeSpring(Particle a, Particle b)
-    {
-        A = a;
-        B = b;
     }
 
     public void Simulate()
@@ -25,7 +19,7 @@ public class Spring : MonoBehaviour
         p1.Position();
         p2.Position();
         p1.Velocity();
-        p1.Velocity();
+        p2.Velocity();
     }
 
     // Spring constant = Ks
