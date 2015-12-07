@@ -115,7 +115,8 @@ MonoBehaviour:
   particles: []
   springs: []
   particle: {fileID: 11419046, guid: 9fc0a8145960af54fba7dfe6cdeb6e2b, type: 2}
-  spring: {fileID: 11412100, guid: 7e20ede4d830ee248b827cdf3b989ef2, type: 2}
+  sideSpring: {fileID: 11412100, guid: 7e20ede4d830ee248b827cdf3b989ef2, type: 2}
+  upSpring: {fileID: 11426170, guid: b4a4a49b4fe6fe845ba5eecf36812972, type: 2}
   width: 5
   height: 5
 --- !u!4 &202281021
@@ -211,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399573409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 8, z: -20}
+  m_LocalPosition: {x: 9, y: 10, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
