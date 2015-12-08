@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
         Spawn();
     }
 
-    // Loops through spring list 
+    // Loops through spring list to draw lines to each particle
     void Update()
     {
         int i = 0;
@@ -35,19 +35,18 @@ public class Spawner : MonoBehaviour
         GameObject particles_ = new GameObject();
         particles_.name = "Particles";
         particles_.transform.SetParent(transform);
+
         GameObject springs_ = new GameObject();
         springs_.name = "Springs";
         springs_.transform.SetParent(transform);
+
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                //GameObject newParticleGO = Instantiate(particleGO);
-                //Particle newParticle = newParticleGO.GetComponent<Particle>();
                 Particle newParticle = Instantiate(particle);
-
                 newParticle.transform.position = new Vector3(x * width, y * height, 0);
-                newParticle.name = (x * width).ToString() + " " + (y * height).ToString();
+                newParticle.name = (x * width).ToString() + " " + (y * height).ToString(); // Set all particle clone names into numbers
                 newParticle.transform.SetParent(particles_.transform);
                 particles.Add(newParticle);
 
@@ -61,10 +60,8 @@ public class Spawner : MonoBehaviour
                     LineRenderer l = sideSpring.GetComponent<LineRenderer>();
                     l.SetPosition(0, newParticle.transform.position);
                     l.SetPosition(1, particles[y * width + (x - 1)].transform.position);
-                    sideSpring.name = (x - .5f).ToString() + " " + (y * height).ToString();
+                    sideSpring.name = "SideSpring: " + x.ToString() + " " + y.ToString();
                     sideSpring.makeSpring(newParticle, particles[y * width + (x - 1)]);
-                    sideSpring.transform.position = new Vector3((x - .5f) * width, y * height, 0);
-                    sideSpring.transform.parent = gameObject.transform;
                     springs.Add(sideSpring);
                     sideSpring.transform.SetParent(springs_.transform);
                 }
@@ -76,21 +73,35 @@ public class Spawner : MonoBehaviour
                     LineRenderer l = aboveSpring.GetComponent<LineRenderer>();
                     l.SetPosition(0, newParticle.transform.position);
                     l.SetPosition(1, particles[(y - 1) * width + x].transform.position);
+                    aboveSpring.name = "AboveSpring: " + x.ToString() + " " + y.ToString();
                     aboveSpring.makeSpring(newParticle, particles[(y - 1) * width + x]);
-                    aboveSpring.transform.position = new Vector3(x * width, (y - .5f) * height, 0);
-                    aboveSpring.transform.parent = gameObject.transform;
                     springs.Add(aboveSpring);
                     aboveSpring.transform.SetParent(springs_.transform);
                 }
 
-                //if (x > 0 && y > 0)
-                //{
-                //    Spring upLeftSpring = Instantiate(leftDiagonalSpring);
-                //    upLeftSpring.makeSpring(newParticle, particles[(y - 1) * width + (x - 1)]);
-                //    upLeftSpring.transform.position = new Vector3(x * width, (y - .5f) * height, 0);
-                //    upLeftSpring.transform.parent = gameObject.transform;
-                //    springs.Add(upLeftSpring);
-                //}
+                if (x > 0 && y > 0) // DownLeftDiagonal spring x-1, y-1
+                {
+                    Spring downLeftSpring = Instantiate(spring);
+                    LineRenderer l = downLeftSpring.GetComponent<LineRenderer>();
+                    l.SetPosition(0, newParticle.transform.position);
+                    l.SetPosition(1, particles[(y - 1) * width + (x - 1)].transform.position);
+                    downLeftSpring.name = "UpLeftSpring: " + x.ToString() + " " + y.ToString();
+                    downLeftSpring.makeSpring(newParticle, particles[(y - 1) * width + (x - 1)]);
+                    springs.Add(downLeftSpring);
+                    downLeftSpring.transform.SetParent(springs_.transform);
+                }
+
+                if (x < width - 1 && y > 0)
+                {
+                    Spring downRightSpring = Instantiate(spring);
+                    LineRenderer l = downRightSpring.GetComponent<LineRenderer>();
+                    l.SetPosition(0, newParticle.transform.position);
+                    l.SetPosition(1, particles[(y - 1) * width + (x + 1)].transform.position);
+                    downRightSpring.name = "DownRightSpring: " + x.ToString() + " " + y.ToString();
+                    downRightSpring.makeSpring(newParticle, particles[(y - 1) * width + (x + 1)]);
+                    springs.Add(downRightSpring);
+                    downRightSpring.transform.SetParent(springs_.transform);
+                }
 
                 //foreach(Particle p in particles)
                 //{
