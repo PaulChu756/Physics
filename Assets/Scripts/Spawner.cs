@@ -69,6 +69,36 @@ public class Spawner : MonoBehaviour
                 newParticle.transform.SetParent(particles_.transform);
                 particles.Add(newParticle);
 
+                /*
+                
+                6 <-- 7 <-- 8
+                | \   |   / |
+                3 <-- 4 <-- 5
+                |  \  |   / |
+                0 <-- 1 <-- 2
+
+                Left Springs = Springs are created and link to the previous one made
+                1 to 0
+                2 to 1
+
+                Above Springs = Springs are connected to the bottom one
+                3 to 0
+                4 to 1
+                5 to 2
+
+                DownLeftDiagonal = Springs connected from top to bottom left
+                4 to 0
+                5 to 1
+                7 to 3
+                8 to 4
+
+                DownRightDiagonal = Springs connected from top to bottom right
+                3 to 1
+                4 to 2
+                6 to 4
+                7 to 5
+                */
+
                 if (x > 0) // Left spring
                 {
                     // Make sure this isn't the first particle in the row, if there is, there won't be anything to it's left and we can't connect.
