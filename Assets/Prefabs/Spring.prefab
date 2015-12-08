@@ -48,11 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cc7531056faf048bb3e1b06d1f3aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springConstant: 10
-  dampingFactor: 10
-  RestLength: 10
+  springConstant: 1
+  dampingFactor: 1
+  RestLength: 5
   p1: {fileID: 0}
   p2: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+  distance: {x: 0, y: 0, z: 0}
+  pos1: {x: 0, y: 0, z: 0}
+  pos2: {x: 0, y: 0, z: 0}
 --- !u!120 &12051550
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -123,15 +127,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: springConstant
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: dampingFactor
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: RestLength
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -21,15 +21,17 @@ public class Spawner : MonoBehaviour
     {
         foreach (Particle p in particles)
         {
-            Vector3 g = new Vector3(0, -.1f, 0) * p.GetComponent<Particle>().mass;
-            p.GetComponent<Particle>().force += g;
-
-            p.GetComponent<Particle>().ParticleMath();
+            p.force = new Vector3(0, -2.0f, 0) * p.mass;
         }
 
         foreach (Spring s in springs)
         {
             s.GetComponent<Spring>().ComputeForce();
+        }
+
+        foreach(Particle p in particles)
+        {
+            p.GetComponent<Particle>().ParticleMath();
         }
     }
 

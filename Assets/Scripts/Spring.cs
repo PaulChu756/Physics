@@ -7,6 +7,10 @@ public class Spring : MonoBehaviour
     public float dampingFactor; // dampingConstant, // a constant for slowing down motion of the spring.
     public float RestLength;
     public Particle p1, p2;
+    public Vector3 direction;
+    public Vector3 distance;
+    public Vector3 pos1, pos2;
+    
 
     public void makeSpring(Particle P1, Particle P2)
     {
@@ -28,10 +32,14 @@ public class Spring : MonoBehaviour
         // Then use Vector.Distance to find out the distance between particles, in order to get the length
         // After getting the length, use in equation to get Spring Force.
         Vector3 e = p2.position - p1.position;
+        //pos1 = p1.position;
+        //pos2 = p2.position;
+      //  distance = e;
         Vector3 l = e.normalized;
+       // direction = l;
         float distanceBetween = Vector3.Distance(p1.position, p2.position);
         float forceSpring = -springConstant * (RestLength - distanceBetween);
-
+  
         // Linear Damping Force
         // Kd = -dampingFactor (v1 - v2)
         // Turn 3D distances & velocities to 1D
@@ -43,11 +51,12 @@ public class Spring : MonoBehaviour
 
         // Spring Damper by just adding the two together
         // Find 1D force and map it back to 3D
-        float springDamper = forceSpring + dampingForce;
-        Vector3 force1 = springDamper * l;
+        float springDamper = forceSpring + dampingForce; //-50 + 0
+        Vector3 force1 = springDamper * l; //<0,0,0> * -50 = 0
+      
         Vector3 force2 = -force1;
 
-        p1.force += force1;
+        p1.force += force1; 
         p2.force += force2;
     }
 }

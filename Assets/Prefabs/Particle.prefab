@@ -72,13 +72,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273de789356bb1e43af88a90d3342cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 0}
   nextPosition: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   nextVelocity: {x: 0, y: 0, z: 0}
-  acceleration: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
-  mass: .100000001
+  mass: 1
   isPinned: 0
 --- !u!1001 &100100000
 Prefab:
@@ -105,7 +103,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mass
-      value: .100000001
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
