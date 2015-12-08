@@ -19,15 +19,12 @@ public class Spawner : MonoBehaviour
 
     void FixedUpdate()
     {
-        DoStuff();
-    }
-
-    public void DoStuff()
-    {
         foreach (Particle p in particles)
         {
             Vector3 g = new Vector3(0, -9.8f, 0) * p.GetComponent<Particle>().mass;
             p.GetComponent<Particle>().force += g;
+
+            p.GetComponent<Particle>().ParticleMath();
         }
 
         foreach (Spring s in springs)

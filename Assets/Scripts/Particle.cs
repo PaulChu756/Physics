@@ -22,27 +22,39 @@ public class Particle : MonoBehaviour
 	// l = length;
 	
 	// Didn't do Uniform Gravity yet, using rigidbody, but thinking about it.
-	
-	public void Acceleration()
-	{
-        acceleration = force / mass;
-	}
-	
-	public void Force () // F = ma;
+
+    public void ParticleMath()
     {
-		force = mass * acceleration;
-	}
-	
-	// Euler Integration for Velocity
-	public void Velocity()
-	{
+        acceleration = force / mass;
         nextVelocity = velocity + (acceleration * Time.deltaTime);
-	}
-	
-	// Euler Integration for Position
-	public void Position()
-	{
         nextPosition = position + (nextVelocity * Time.deltaTime);
-        transform.position = nextPosition;
-	}
+        gameObject.transform.position += nextPosition;
+    }
+	
+	//public void Acceleration()
+	//{
+ //       acceleration = force / mass;
+	//}
+	
+	//public void Force () // F = ma;
+ //   {
+	//	force = mass * acceleration;
+	//}
+	
+	//// Euler Integration for Velocity
+	//public void Velocity()
+	//{
+ //       nextVelocity = velocity + (acceleration * Time.deltaTime);
+	//}
+	
+	//// Euler Integration for Position
+	//public void Position()
+	//{
+ //       nextPosition = position + (nextVelocity * Time.deltaTime);
+ //       transform.position = nextPosition;
+	//}
+
+
+
+
 }
