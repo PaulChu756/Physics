@@ -12,6 +12,7 @@ public class Particle : MonoBehaviour
     public Vector3 acceleration;
     public Vector3 force;
 	public float mass;
+    public bool isPinned;
 	
 	// r = pos
 	// v = velocity
@@ -25,36 +26,12 @@ public class Particle : MonoBehaviour
 
     public void ParticleMath()
     {
-        acceleration = force / mass;
-        nextVelocity = velocity + (acceleration * Time.deltaTime);
-        nextPosition = position + (nextVelocity * Time.deltaTime);
-        gameObject.transform.position += nextPosition;
+        if(!isPinned)
+        {
+            acceleration = force / mass;
+            nextVelocity = velocity + (acceleration * Time.deltaTime);
+            nextPosition = position + (nextVelocity * Time.deltaTime);
+            gameObject.transform.position += nextPosition;
+        }
     }
-	
-	//public void Acceleration()
-	//{
- //       acceleration = force / mass;
-	//}
-	
-	//public void Force () // F = ma;
- //   {
-	//	force = mass * acceleration;
-	//}
-	
-	//// Euler Integration for Velocity
-	//public void Velocity()
-	//{
- //       nextVelocity = velocity + (acceleration * Time.deltaTime);
-	//}
-	
-	//// Euler Integration for Position
-	//public void Position()
-	//{
- //       nextPosition = position + (nextVelocity * Time.deltaTime);
- //       transform.position = nextPosition;
-	//}
-
-
-
-
 }

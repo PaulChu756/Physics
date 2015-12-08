@@ -49,14 +49,14 @@ public class Spring : MonoBehaviour
 
         p1.force += force1;
         p2.force += force2;
-
-        //Vector3 F_aero;
-        //Vector3 p;
-        //Vector3 c;
-        //Vector3 a;
-        //Vector3 e;
     }
 }
+
+//Vector3 F_aero;
+//Vector3 p;
+//Vector3 c;
+//Vector3 a;
+//Vector3 e;
 
 // Aerodynamic drag force
 // p = density of air or water
