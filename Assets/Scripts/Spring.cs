@@ -14,14 +14,6 @@ public class Spring : MonoBehaviour
         p2 = P2;
     }
 
-    public void Simulate()
-    {
-        p1.Position();
-        p2.Position();
-        p1.Velocity();
-        p2.Velocity();
-    }
-
     // Spring constant = Ks
     // Damping Factor = Kd
     // Rest Length = l

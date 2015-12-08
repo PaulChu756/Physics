@@ -17,6 +17,25 @@ public class Spawner : MonoBehaviour
         Spawn();
     }
 
+    void FixedUpdate()
+    {
+        DoStuff();
+    }
+
+    public void DoStuff()
+    {
+        foreach (Particle p in particles)
+        {
+            Vector3 g = new Vector3(0, -9.8f, 0) * p.GetComponent<Particle>().mass;
+            p.GetComponent<Particle>().force += g;
+        }
+
+        foreach (Spring s in springs)
+        {
+            s.GetComponent<Spring>().ComputeForce();
+        }
+    }
+
     // Loops through spring list to draw lines to each particle
     void Update()
     {
@@ -79,7 +98,7 @@ public class Spawner : MonoBehaviour
                     aboveSpring.transform.SetParent(springs_.transform);
                 }
 
-                if (x > 0 && y > 0) // DownLeftDiagonal spring x-1, y-1
+                if (x > 0 && y > 0) // DownLeftDiagonal spring y-1, x-1
                 {
                     Spring downLeftSpring = Instantiate(spring);
                     LineRenderer l = downLeftSpring.GetComponent<LineRenderer>();
@@ -91,7 +110,7 @@ public class Spawner : MonoBehaviour
                     downLeftSpring.transform.SetParent(springs_.transform);
                 }
 
-                if (x < width - 1 && y > 0)
+                if (x < width - 1 && y > 0) // DownRightDiagonal, spring y-1, x+1
                 {
                     Spring downRightSpring = Instantiate(spring);
                     LineRenderer l = downRightSpring.GetComponent<LineRenderer>();
@@ -102,29 +121,7 @@ public class Spawner : MonoBehaviour
                     springs.Add(downRightSpring);
                     downRightSpring.transform.SetParent(springs_.transform);
                 }
-
-                //foreach(Particle p in particles)
-                //{
-                //    p.GetComponent<Spring>().Simulate();
-                //}
-
-                //foreach(Spring s in springs)
-                //{
-                //    s.GetComponent<Spring>().Simulate();
-                //}
             }
-
         }
-  
-
-
     }
-    //public void ApplyGravity()
-    //{
-    //    foreach(GameObject o in particles)
-    //    {
-    //        Vector3 g = new Vector3(0, -9.8f, 0) * GetComponent<Particle>().mass;
-    //        GetComponent<Particle>().force += g;
-    //    }
-    //}
 }
