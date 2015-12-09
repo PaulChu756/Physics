@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Spawner : MonoBehaviour
     public Particle particle;
     public Spring spring;
     public int width, height;
-    public float k, b, l, mass;
+    public Slider k, b, l, mass;
 
     void Awake()
     {
@@ -25,16 +26,16 @@ public class Spawner : MonoBehaviour
         foreach (Particle p in particles)
         {
             p.GetComponent<Particle>().ParticleMath();
-            p.mass = mass;
+            p.mass = mass.value;
             p.force = new Vector3(0, -2.0f, 0) * p.mass;
         }
 
         foreach (Spring s in springs)
         {
             s.GetComponent<Spring>().ComputeForce();
-            s.springConstant = k;
-            s.dampingFactor = b;
-            s.RestLength = l;
+            s.springConstant = k.value;
+            s.dampingFactor = b.value;
+            s.RestLength = l.value;
         }
     }
 
@@ -48,6 +49,11 @@ public class Spawner : MonoBehaviour
             l.SetPosition(0, springs[i].p1.transform.position);
             l.SetPosition(1, springs[i].p2.transform.position);
             i++;
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
         }
     }
 
