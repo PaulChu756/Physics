@@ -6,32 +6,35 @@ public class Spawner : MonoBehaviour
 {
     public List<Particle> particles = new List<Particle>();
     public List<Spring> springs = new List<Spring>();
-
     public Particle particle;
     public Spring spring;
-
     public int width, height;
+    public float k, b, l, mass;
 
     void Awake()
     {
         Spawn();
+        particles[0].isPinned = true;
+        particles[4].isPinned = true;
+        particles[20].isPinned = true;
+        particles[24].isPinned = true;
     }
 
     void FixedUpdate()
     {
         foreach (Particle p in particles)
         {
+            p.GetComponent<Particle>().ParticleMath();
+            p.mass = mass;
             p.force = new Vector3(0, -2.0f, 0) * p.mass;
         }
 
         foreach (Spring s in springs)
         {
             s.GetComponent<Spring>().ComputeForce();
-        }
-
-        foreach(Particle p in particles)
-        {
-            p.GetComponent<Particle>().ParticleMath();
+            s.springConstant = k;
+            s.dampingFactor = b;
+            s.RestLength = l;
         }
     }
 

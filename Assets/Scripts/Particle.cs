@@ -1,20 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/* Unity has build in normailized and Mag. */
-
 public class Particle : MonoBehaviour
 {
-    public Vector3 position
+    public Vector3 position // current pos of the particle in space
     {
         get { return transform.position; }
-        set { transform.position = value; }
-
-    } // current pos of the particle in space
-    public Vector3 nextPosition;
+        set { transform.position = value; } // Getting and Setting the position = transform.position
+    } 
     public Vector3 velocity; // current velocity of the particle 
-    public Vector3 nextVelocity;
-    //  public Vector3 acceleration;
     public Vector3 force;
     public float mass;
     public bool isPinned;
@@ -24,23 +18,20 @@ public class Particle : MonoBehaviour
     // a = acceleration
     // m = mass
     // p = momentum
-    // f = force
     // l = length;
-    void Start()
+
+    void Awake()
     {
         position = transform.position;
     }
+
     public void ParticleMath()
     {
         if (!isPinned)
         {
-            Vector3 acceleration = force / mass;
+            Vector3 acceleration = force / mass; // We create acceleration right here, so it doesn't get reset
             velocity += (acceleration * Time.deltaTime);
             position += (velocity * Time.deltaTime);
         }
-        
-
-        //transform.position = position;
-
     }
 }
