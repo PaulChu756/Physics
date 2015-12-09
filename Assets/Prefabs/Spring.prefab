@@ -8,7 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 498924}
-  - 33: {fileID: 3348116}
   - 114: {fileID: 11462922}
   - 120: {fileID: 12051550}
   m_Layer: 0
@@ -30,13 +29,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!33 &3348116
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129528}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &11462922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,10 +45,6 @@ MonoBehaviour:
   RestLength: 5
   p1: {fileID: 0}
   p2: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
-  distance: {x: 0, y: 0, z: 0}
-  pos1: {x: 0, y: 0, z: 0}
-  pos2: {x: 0, y: 0, z: 0}
 --- !u!120 &12051550
 LineRenderer:
   m_ObjectHideFlags: 1

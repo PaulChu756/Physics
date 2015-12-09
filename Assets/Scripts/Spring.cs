@@ -3,9 +3,15 @@ using System.Collections;
 
 public class Spring : MonoBehaviour
 {
-    public float springConstant; // springConstant, a constant for how "strong" the spring is.
-    public float dampingFactor; // dampingConstant, a constant for slowing down motion of the spring.
-    public float RestLength; // length between two particles
+    /// <summary>
+    /// springConstant, a constant for how "strong" the spring is.
+    /// dampingConstant, a constant for slowing down motion of the spring.
+    /// length between two particles
+    /// Hook's Law = spring force = -k * d || k = force but number is scaler. d = displacement, number is vector
+    /// </summary>
+    public float springConstant;
+    public float dampingFactor;
+    public float RestLength;
     public Particle p1, p2;
     
     public void makeSpring(Particle P1, Particle P2)
@@ -13,11 +19,6 @@ public class Spring : MonoBehaviour
         p1 = P1;
         p2 = P2;
     }
-
-    // Spring constant = Ks
-    // Damping Factor = Kd
-    // Rest Length = l
-    // Hook's Law = spring force = -k * d || k = force but number is scaler. d = displacement, number is vector
 
     public void ComputeForce()
     {
@@ -51,20 +52,4 @@ public class Spring : MonoBehaviour
         p2.force += force2;
     }
 }
-
-//Vector3 F_aero;
-//Vector3 p;
-//Vector3 c;
-//Vector3 a;
-//Vector3 e;
-
-// Aerodynamic drag force
-// p = density of air or water
-// c = coefficient of drag for the object
-// a = cross sectional area of the object
-// e = unity vector in the opposite direction of the velocity // Changed to n for some reason.
-// What the hell is V... Velocity?!?!?
-
-// Using triangles for surface area
-// find velocity, normal, and area of triangle.
 
