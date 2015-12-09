@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         {
             p.GetComponent<Particle>().ParticleMath();
             p.mass = mass.value;
-            p.force = new Vector3(0, -2.0f, 0) * p.mass;
+            p.force = new Vector3(0, -9.8f, 0) * p.mass;
         }
 
         foreach (Spring s in springs)

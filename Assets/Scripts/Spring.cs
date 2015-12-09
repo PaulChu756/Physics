@@ -17,7 +17,7 @@ public class Spring : MonoBehaviour
     // Spring constant = Ks
     // Damping Factor = Kd
     // Rest Length = l
-    // spring force = -k * d || k = force but number is scaler. d = displacement, number is vector
+    // Hook's Law = spring force = -k * d || k = force but number is scaler. d = displacement, number is vector
 
     public void ComputeForce()
     {
