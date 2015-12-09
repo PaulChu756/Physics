@@ -25,7 +25,6 @@ public class Spawner : MonoBehaviour
     {
         foreach (Particle p in particles)
         {
-            p.GetComponent<Particle>().ParticleMath();
             p.mass = mass.value;
             p.force = new Vector3(0, -9.8f, 0) * p.mass;
         }
@@ -36,6 +35,11 @@ public class Spawner : MonoBehaviour
             s.springConstant = k.value;
             s.dampingFactor = b.value;
             s.RestLength = l.value;
+        }
+
+        foreach (Particle p in particles) // Particle Euler Intergration
+        {
+            p.GetComponent<Particle>().ParticleMath();
         }
     }
 
