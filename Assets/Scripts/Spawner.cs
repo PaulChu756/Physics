@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
             i++;
         }
 
-        if (Input.GetKey("escape"))
+        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
         {
             Application.Quit();
         }
