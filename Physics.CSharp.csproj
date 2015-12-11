@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AerodynamicForce.cs" />
     <Compile Include="Assets\Scripts\CameraMove.cs" />
+    <Compile Include="Assets\Scripts\DragDrop.cs" />
     <Compile Include="Assets\Scripts\Particle.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\Spring.cs" />

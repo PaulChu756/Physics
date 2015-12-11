@@ -5,28 +5,38 @@ public class AerodynamicForce : MonoBehaviour
 {
     Particle p1, p2, p3;
     public Vector3 velAir = new Vector3 (0, 0, 1);
+    public float drag = 0.5f;
+    public float density = 1.0f;
 
-    public void velSurface()
+    public void makeTriangle(Particle P1, Particle P2, Particle P3)
     {
-        Vector3 velSur = (p1.velocity + p2.velocity + p3.velocity) / 3;
-        Vector3 velRelative = velSur - velAir;
+        p1 = P1;
+        p2 = P2;
+        p3 = P3;
     }
 
-    public Vector3 normalTriangle()
+    public void AeroMath()
     {
-        Vector3 side1 = p2.position - p1.position;
-        Vector3 side2 = p3.position - p1.position;
-        return Vector3.Cross(side1, side2).normalized;
-    }
+        //Find velocity of Triangle.
+        Vector3 velTriangle = (p1.velocity + p2.velocity + p3.velocity) / 3;
 
+        //Find relative velocity, so subtract off velocity of the air.
+        velTriangle -= velAir;
+
+        //Finding the normal of the Triangle.
+        Vector3 a = p2.position - p1.position;
+        Vector3 b = p3.position - p1.position;
+        Vector3 crossProduct = Vector3.Cross(a,b);
+        Vector3 normalTri = crossProduct / crossProduct.magnitude;
+
+        // Aerodyamic Force equation
+        Vector3 aeroForce = -0.5f * drag * density * ((0.5f * Vector3.Dot(velTriangle, normalTri) 
+            * velTriangle.magnitude) / crossProduct.magnitude) * crossProduct;
+
+        aeroForce /= 3.0f;
+
+        p1.force += aeroForce;
+        p2.force += aeroForce;
+        p3.force += aeroForce;
+    }
 }
-
-// Aerodynamic drag force
-// p = density of air or water
-// c = coefficient of drag for the object
-// a = cross sectional area of the object
-// n = normal of the surface of triangle
-// v = velocity;s
-// Using triangles for surface area
-// find velocity, normal, and area of triangle.
-// aeroForce = (-1/2) * p * v.Abs.Value ^2 * c * a * n 

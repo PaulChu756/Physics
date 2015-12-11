@@ -13,13 +13,6 @@ public class Particle : MonoBehaviour
     public float mass;
     public bool isPinned;
 
-    // r = pos
-    // v = velocity
-    // a = acceleration
-    // m = mass
-    // p = momentum
-    // l = length;
-
     void Awake()
     {
         position = transform.position;

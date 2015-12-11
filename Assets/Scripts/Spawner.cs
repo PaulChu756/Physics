@@ -7,10 +7,12 @@ public class Spawner : MonoBehaviour
 {
     public List<Particle> particles = new List<Particle>();
     public List<Spring> springs = new List<Spring>();
+    public List<AerodynamicForce> triangles = new List<AerodynamicForce>();
     public Particle particle;
     public Spring spring;
     public int width, height;
-    public Slider k, b, l, mass;
+    public Slider k, b, l, mass, a;
+    public float vLim = 5.0f;
 
     void Awake()
     {
@@ -27,6 +29,10 @@ public class Spawner : MonoBehaviour
         {
             p.mass = mass.value;
             p.force = new Vector3(0, -9.8f, 0) * p.mass;
+            if(p.velocity.magnitude > vLim)
+            {
+               p.velocity = p.velocity.normalized * vLim;
+            }
         }
 
         foreach (Spring s in springs)
@@ -35,6 +41,12 @@ public class Spawner : MonoBehaviour
             s.springConstant = k.value;
             s.dampingFactor = b.value;
             s.RestLength = l.value;
+        }
+
+        foreach (AerodynamicForce t in triangles)
+        {
+            t.GetComponent<AerodynamicForce>().AeroMath();
+            t.velAir.z = a.value;
         }
 
         foreach (Particle p in particles) // Particle Euler Intergration
@@ -70,6 +82,11 @@ public class Spawner : MonoBehaviour
         GameObject springs_ = new GameObject();
         springs_.name = "Springs";
         springs_.transform.SetParent(transform);
+
+        GameObject triangles_ = new GameObject();
+        triangles_.name = "Triangles";
+        triangles_.transform.SetParent(transform);
+
 
         for (int y = 0; y < height; y++)
         {
@@ -163,6 +180,32 @@ public class Spawner : MonoBehaviour
                     springs.Add(downRightSpring);
                     downRightSpring.transform.SetParent(springs_.transform);
                 }
+            }
+        }
+
+        for(int x = 0; x < particles.Count; x++)
+        {
+            if (x + 1 < width * height && x + width < width * height && x + width + 1 < width * height)
+            {
+                AerodynamicForce firstTri = GetComponent<AerodynamicForce>();
+                firstTri.makeTriangle(particles[x], particles[x + 1], particles[x + width]);
+                triangles.Add(firstTri);
+                firstTri.transform.SetParent(triangles_.transform);
+
+                AerodynamicForce secondTri = GetComponent<AerodynamicForce>();
+                secondTri.makeTriangle(particles[x], particles[x + 1], particles[x + width + 1]);
+                triangles.Add(secondTri);
+                secondTri.transform.SetParent(triangles_.transform);
+
+                AerodynamicForce thirdTri = GetComponent<AerodynamicForce>();
+                thirdTri.makeTriangle(particles[x + 1], particles[x + width], particles[x + width + 1]);
+                triangles.Add(thirdTri);
+                thirdTri.transform.SetParent(triangles_.transform);
+
+                AerodynamicForce fourthTri = GetComponent<AerodynamicForce>();
+                fourthTri.makeTriangle(particles[x], particles[x + width], particles[x + width + 1]);
+                triangles.Add(fourthTri);
+                fourthTri.transform.SetParent(triangles_.transform);
             }
         }
     }
