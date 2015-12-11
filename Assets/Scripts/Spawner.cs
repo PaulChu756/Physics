@@ -7,12 +7,12 @@ public class Spawner : MonoBehaviour
 {
     public List<Particle> particles = new List<Particle>();
     public List<Spring> springs = new List<Spring>();
-    public List<AerodynamicForce> triangles = new List<AerodynamicForce>();
+    public List<AeroForce> triangles = new List<AeroForce>();
     public Particle particle;
     public Spring spring;
-    public AerodynamicForce triangle;
+    public AeroForce triangle;
     public int width, height;
-    public Slider k, b, l, mass, a;
+    public Slider k, b, l, mass, a, density, drag;
     public Button exit, spawn;
     public float vLim = 5.0f;
     GameObject particles_;
@@ -42,12 +42,14 @@ public class Spawner : MonoBehaviour
             }
         }
 
-        foreach (AerodynamicForce t in triangles)
+        foreach (AeroForce t in triangles)
         {
             if(t != null)
             {
                 t.velAir.z = a.value;
-                t.GetComponent<AerodynamicForce>().AeroMath();
+                t.drag = drag.value;
+                t.density = density.value;
+                t.GetComponent<AeroForce>().AeroMath();
             }
         }
 
@@ -66,11 +68,14 @@ public class Spawner : MonoBehaviour
         int i = 0;
         foreach (Spring s in springs)
         {
-            // Credit: Matthew Williamson
-            LineRenderer l = s.GetComponent<LineRenderer>();
-            l.SetPosition(0, springs[i].p1.transform.position);
-            l.SetPosition(1, springs[i].p2.transform.position);
-            i++;
+            if (s != null)
+            {
+                // Credit: Matthew Williamson
+                LineRenderer l = s.GetComponent<LineRenderer>();
+                l.SetPosition(0, springs[i].p1.transform.position);
+                l.SetPosition(1, springs[i].p2.transform.position);
+                i++;
+            }
         }
 
         if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
@@ -91,7 +96,7 @@ public class Spawner : MonoBehaviour
             Destroy(s.gameObject);
         }
 
-        foreach(AerodynamicForce t in triangles)
+        foreach(AeroForce t in triangles)
         {
             Destroy(t.gameObject);
         }
@@ -101,13 +106,13 @@ public class Spawner : MonoBehaviour
 
         particles = new List<Particle>();
         springs = new List<Spring>();
-        triangles = new List<AerodynamicForce>();
+        triangles = new List<AeroForce>();
         
         Spawn();
-        particles[0].isPinned = true;
-        particles[4].isPinned = true;
-        particles[20].isPinned = true;
-        particles[24].isPinned = true;
+        particles[6].isPinned = true;
+        particles[8].isPinned = true;
+        particles[7].isPinned = true;
+        //particles[24].isPinned = true;
     }
 
     public void Exit()
@@ -230,22 +235,22 @@ public class Spawner : MonoBehaviour
         {
             if (x + 1 < width * height && x + width < width * height && x + width + 1 < width * height)
             {
-                AerodynamicForce firstTri = Instantiate(triangle);
+                AeroForce firstTri = Instantiate(triangle);
                 firstTri.makeTriangle(particles[x], particles[x + 1], particles[x + width]);
                 triangles.Add(firstTri);
                 firstTri.transform.SetParent(triangle_.transform);
 
-                AerodynamicForce secondTri = Instantiate(triangle);
+                AeroForce secondTri = Instantiate(triangle);
                 secondTri.makeTriangle(particles[x], particles[x + 1], particles[x + width + 1]);
                 triangles.Add(secondTri);
                 secondTri.transform.SetParent(triangle_.transform);
 
-                AerodynamicForce thirdTri = Instantiate(triangle);
+                AeroForce thirdTri = Instantiate(triangle);
                 thirdTri.makeTriangle(particles[x + 1], particles[x + width], particles[x + width + 1]);
                 triangles.Add(thirdTri);
                 thirdTri.transform.SetParent(triangle_.transform);
 
-                AerodynamicForce fourthTri = Instantiate(triangle);
+                AeroForce fourthTri = Instantiate(triangle);
                 fourthTri.makeTriangle(particles[x], particles[x + width], particles[x + width + 1]);
                 triangles.Add(fourthTri);
                 fourthTri.transform.SetParent(triangle_.transform);
