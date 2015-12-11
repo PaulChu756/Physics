@@ -10,18 +10,14 @@ public class Spawner : MonoBehaviour
     public List<AerodynamicForce> triangles = new List<AerodynamicForce>();
     public Particle particle;
     public Spring spring;
+    public AerodynamicForce triangle;
     public int width, height;
     public Slider k, b, l, mass, a;
+    public Button exit, spawn;
     public float vLim = 5.0f;
-
-    void Awake()
-    {
-        Spawn();
-        particles[0].isPinned = true;
-        particles[4].isPinned = true;
-        particles[20].isPinned = true;
-        particles[24].isPinned = true;
-    }
+    GameObject particles_;
+    GameObject springs_;
+    GameObject triangle_;
 
     void FixedUpdate()
     {
@@ -37,21 +33,30 @@ public class Spawner : MonoBehaviour
 
         foreach (Spring s in springs)
         {
-            s.GetComponent<Spring>().ComputeForce();
-            s.springConstant = k.value;
-            s.dampingFactor = b.value;
-            s.RestLength = l.value;
+            if (s != null)
+            {
+                s.springConstant = k.value;
+                s.dampingFactor = b.value;
+                s.RestLength = l.value;
+                s.GetComponent<Spring>().ComputeForce();
+            }
         }
 
         foreach (AerodynamicForce t in triangles)
         {
-            t.GetComponent<AerodynamicForce>().AeroMath();
-            t.velAir.z = a.value;
+            if(t != null)
+            {
+                t.velAir.z = a.value;
+                t.GetComponent<AerodynamicForce>().AeroMath();
+            }
         }
 
         foreach (Particle p in particles) // Particle Euler Intergration
         {
-            p.GetComponent<Particle>().ParticleMath();
+            if(p != null)
+            {
+                p.GetComponent<Particle>().ParticleMath();
+            }
         }
     }
 
@@ -61,6 +66,7 @@ public class Spawner : MonoBehaviour
         int i = 0;
         foreach (Spring s in springs)
         {
+            // Credit: Matthew Williamson
             LineRenderer l = s.GetComponent<LineRenderer>();
             l.SetPosition(0, springs[i].p1.transform.position);
             l.SetPosition(1, springs[i].p2.transform.position);
@@ -69,24 +75,60 @@ public class Spawner : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
         {
-            Application.Quit();
+            Exit();
         }
+    }
+
+    public void ResetCloth()
+    {
+        foreach(Particle p in particles)
+        {
+            Destroy(p.gameObject);
+        }
+
+        foreach (Spring s in springs)
+        {
+            Destroy(s.gameObject);
+        }
+
+        foreach(AerodynamicForce t in triangles)
+        {
+            Destroy(t.gameObject);
+        }
+
+        Destroy(particles_);
+        Destroy(springs_);
+
+        particles = new List<Particle>();
+        springs = new List<Spring>();
+        triangles = new List<AerodynamicForce>();
+        
+        Spawn();
+        particles[0].isPinned = true;
+        particles[4].isPinned = true;
+        particles[20].isPinned = true;
+        particles[24].isPinned = true;
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
     public void Spawn()
     {
-        GameObject particles_ = new GameObject();
+        particles_ = new GameObject();
+        springs_ = new GameObject();
+        triangle_ = new GameObject();
+
         particles_.name = "Particles";
         particles_.transform.SetParent(transform);
 
-        GameObject springs_ = new GameObject();
         springs_.name = "Springs";
         springs_.transform.SetParent(transform);
 
-        GameObject triangles_ = new GameObject();
-        triangles_.name = "Triangles";
-        triangles_.transform.SetParent(transform);
-
+        triangle_.name = "Triangles";
+        triangle_.transform.SetParent(transform);
 
         for (int y = 0; y < height; y++)
         {
@@ -183,29 +225,30 @@ public class Spawner : MonoBehaviour
             }
         }
 
+        // Credit: Matthew Williamson
         for(int x = 0; x < particles.Count; x++)
         {
             if (x + 1 < width * height && x + width < width * height && x + width + 1 < width * height)
             {
-                AerodynamicForce firstTri = GetComponent<AerodynamicForce>();
+                AerodynamicForce firstTri = Instantiate(triangle);
                 firstTri.makeTriangle(particles[x], particles[x + 1], particles[x + width]);
                 triangles.Add(firstTri);
-                firstTri.transform.SetParent(triangles_.transform);
+                firstTri.transform.SetParent(triangle_.transform);
 
-                AerodynamicForce secondTri = GetComponent<AerodynamicForce>();
+                AerodynamicForce secondTri = Instantiate(triangle);
                 secondTri.makeTriangle(particles[x], particles[x + 1], particles[x + width + 1]);
                 triangles.Add(secondTri);
-                secondTri.transform.SetParent(triangles_.transform);
+                secondTri.transform.SetParent(triangle_.transform);
 
-                AerodynamicForce thirdTri = GetComponent<AerodynamicForce>();
+                AerodynamicForce thirdTri = Instantiate(triangle);
                 thirdTri.makeTriangle(particles[x + 1], particles[x + width], particles[x + width + 1]);
                 triangles.Add(thirdTri);
-                thirdTri.transform.SetParent(triangles_.transform);
+                thirdTri.transform.SetParent(triangle_.transform);
 
-                AerodynamicForce fourthTri = GetComponent<AerodynamicForce>();
+                AerodynamicForce fourthTri = Instantiate(triangle);
                 fourthTri.makeTriangle(particles[x], particles[x + width], particles[x + width + 1]);
                 triangles.Add(fourthTri);
-                fourthTri.transform.SetParent(triangles_.transform);
+                fourthTri.transform.SetParent(triangle_.transform);
             }
         }
     }

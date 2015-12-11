@@ -34,6 +34,7 @@ public class Spring : MonoBehaviour
     /// </summary>
     public void ComputeForce()
     {
+        // Credit: Matthew Williamson.
         Vector3 e = p2.position - p1.position;
         Vector3 l = e.normalized;
         float distanceBetween = Vector3.Distance(p1.position, p2.position);

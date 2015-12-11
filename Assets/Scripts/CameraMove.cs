@@ -4,6 +4,7 @@ using System.Collections;
 
 /// <summary>
 /// Addes the ability to move and rotate the camera that this script is attached to.
+/// Credit: Eric Mouledoux
 /// </summary>
 public class CameraMove : MonoBehaviour
 {

@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\Particle.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\Spring.cs" />
-    <Compile Include="Assets\Scripts\TeacherTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
