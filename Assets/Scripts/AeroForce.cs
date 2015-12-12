@@ -34,10 +34,8 @@ public class AeroForce : MonoBehaviour
         float effectiveArea = totalArea * Vector3.Dot(velTriangle, normalTri) / velTriangle.magnitude;
 
         // Aerodyamic Force equation
-        //AeroForce = -0.5 * density * drag * area * |V|^2 * normalTri
-
+        // AeroForce = -0.5 * density * drag * area * |V|^2 * normalTri
         Vector3 aeroForce = -0.5f * drag * density * effectiveArea * velTriangle.sqrMagnitude * normalTri;
-        //Vector3 aeroForce = -0.5f * drag * density * ((0.5f * Vector3.Dot(velTriangle, normalTri) * velTriangle.magnitude) / crossProduct.magnitude) * crossProduct;
 
         aeroForce /= 3.0f;
 

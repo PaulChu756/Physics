@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     public Spring spring;
     public AeroForce triangle;
     public int width, height;
-    public Slider k, b, l, mass, a, density, drag;
+    public Slider k, b, l, mass, air, density, drag;
     public Button exit, spawn;
     public float vLim = 5.0f;
     GameObject particles_;
@@ -46,7 +46,7 @@ public class Spawner : MonoBehaviour
         {
             if(t != null)
             {
-                t.velAir.z = a.value;
+                t.velAir.z = air.value;
                 t.drag = drag.value;
                 t.density = density.value;
                 t.GetComponent<AeroForce>().AeroMath();
@@ -103,16 +103,22 @@ public class Spawner : MonoBehaviour
 
         Destroy(particles_);
         Destroy(springs_);
+        Destroy(triangle_);
 
         particles = new List<Particle>();
         springs = new List<Spring>();
         triangles = new List<AeroForce>();
         
         Spawn();
-        particles[6].isPinned = true;
-        particles[8].isPinned = true;
-        particles[7].isPinned = true;
-        //particles[24].isPinned = true;
+        isPinned();
+    }
+
+    public void isPinned()
+    {
+        particles[height - 1].isPinned = true;
+        particles[height * width - 1].isPinned = true;
+        particles[height * width - height].isPinned = true;
+        particles[0].isPinned = true;
     }
 
     public void Exit()
@@ -236,21 +242,25 @@ public class Spawner : MonoBehaviour
             if (x + 1 < width * height && x + width < width * height && x + width + 1 < width * height)
             {
                 AeroForce firstTri = Instantiate(triangle);
+                firstTri.name = "FirstTriangle: " + width.ToString() + " " + height.ToString();
                 firstTri.makeTriangle(particles[x], particles[x + 1], particles[x + width]);
                 triangles.Add(firstTri);
                 firstTri.transform.SetParent(triangle_.transform);
 
                 AeroForce secondTri = Instantiate(triangle);
+                secondTri.name = "SecondTriangle: " + width.ToString() + " " + height.ToString();
                 secondTri.makeTriangle(particles[x], particles[x + 1], particles[x + width + 1]);
                 triangles.Add(secondTri);
                 secondTri.transform.SetParent(triangle_.transform);
 
                 AeroForce thirdTri = Instantiate(triangle);
+                thirdTri.name = "ThirdTriangle: " + width.ToString() + " " + height.ToString();
                 thirdTri.makeTriangle(particles[x + 1], particles[x + width], particles[x + width + 1]);
                 triangles.Add(thirdTri);
                 thirdTri.transform.SetParent(triangle_.transform);
 
                 AeroForce fourthTri = Instantiate(triangle);
+                fourthTri.name = "FourthTriangle: " + width.ToString() + " " + height.ToString();
                 fourthTri.makeTriangle(particles[x], particles[x + width], particles[x + width + 1]);
                 triangles.Add(fourthTri);
                 fourthTri.transform.SetParent(triangle_.transform);
