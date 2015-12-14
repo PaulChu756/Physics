@@ -12,9 +12,9 @@ public class Spawner : MonoBehaviour
     public Spring spring;
     public AeroForce triangle;
     public int width, height;
-    public Slider k, b, l, mass, air, density, drag;
+    public float vLim;
+    public Slider k, b, l, air;
     public Button exit, spawn;
-    public float vLim = 5.0f;
     GameObject particles_;
     GameObject springs_;
     GameObject triangle_;
@@ -23,7 +23,6 @@ public class Spawner : MonoBehaviour
     {
         foreach (Particle p in particles)
         {
-            p.mass = mass.value;
             p.force = new Vector3(0, -9.8f, 0) * p.mass;
             if(p.velocity.magnitude > vLim)
             {
@@ -47,8 +46,6 @@ public class Spawner : MonoBehaviour
             if(t != null)
             {
                 t.velAir.z = air.value;
-                t.drag = drag.value;
-                t.density = density.value;
                 t.GetComponent<AeroForce>().AeroMath();
             }
         }
