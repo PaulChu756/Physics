@@ -120,10 +120,14 @@ public class Spawner : MonoBehaviour
     public void isPinned()
     {
         // If Width and Height are the same numbers
-        particles[height - 1].isPinned = true; // Bottom right
+        particles[width - 1].isPinned = true; // Bottom right
         particles[height * width - 1].isPinned = true; // Top right
-        particles[height * width - height].isPinned = true; // Top left
-        particles[0].isPinned = true;
+        particles[height * width - width].isPinned = true; // Top left
+
+
+
+
+        particles[0].isPinned = true;// Bottom Left
 
         //
     }
@@ -154,7 +158,7 @@ public class Spawner : MonoBehaviour
             {
                 Particle newParticle = Instantiate(particle);
                 newParticle.transform.position = new Vector3(x * width, y * height, 0);
-                newParticle.name = (x * width).ToString() + " " + (y * height).ToString(); // Set all particle clone names into numbers
+                newParticle.name = x.ToString() + " " + y.ToString(); // Set all particle clone names into numbers
                 newParticle.transform.SetParent(particles_.transform);
                 particles.Add(newParticle);
 
