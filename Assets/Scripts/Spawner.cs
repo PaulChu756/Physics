@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     public AeroForce triangle;
     public int width, height;
     public float vLim;
-    public Slider k, b, l, air;
+    public Slider k, b, l, air, width_, height_;
     public Button exit, spawn;
     GameObject particles_;
     GameObject springs_;
@@ -102,20 +102,30 @@ public class Spawner : MonoBehaviour
         Destroy(springs_);
         Destroy(triangle_);
 
+        k.value = 1;
+        b.value = 1;
+        l.value = 1;
+        air.value = 0.1f;
+
         particles = new List<Particle>();
         springs = new List<Spring>();
         triangles = new List<AeroForce>();
-        
+
+        width = (int)width_.value;
+        height = (int)height_.value;
         Spawn();
         isPinned();
     }
 
     public void isPinned()
     {
-        particles[height - 1].isPinned = true;
-        particles[height * width - 1].isPinned = true;
-        particles[height * width - height].isPinned = true;
+        // If Width and Height are the same numbers
+        particles[height - 1].isPinned = true; // Bottom right
+        particles[height * width - 1].isPinned = true; // Top right
+        particles[height * width - height].isPinned = true; // Top left
         particles[0].isPinned = true;
+
+        //
     }
 
     public void Exit()
