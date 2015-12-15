@@ -123,13 +123,7 @@ public class Spawner : MonoBehaviour
         particles[width - 1].isPinned = true; // Bottom right
         particles[height * width - 1].isPinned = true; // Top right
         particles[height * width - width].isPinned = true; // Top left
-
-
-
-
-        particles[0].isPinned = true;// Bottom Left
-
-        //
+        particles[0].isPinned = true; // Bottom Left
     }
 
     public void Exit()
