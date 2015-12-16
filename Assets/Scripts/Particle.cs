@@ -28,3 +28,9 @@ public class Particle : MonoBehaviour
         }
     }
 }
+
+/* 
+    Drag objects and let the springs be destroyed until it's pulled to much
+    Have keyboard keys to lock particles and unlock
+    Have camera reset to look middle cloth/grid.
+*/

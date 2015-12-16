@@ -12,6 +12,7 @@ public class Spring : MonoBehaviour
     public float springConstant;
     public float dampingFactor;
     public float RestLength;
+    public float breakDistance;
     public Particle p1, p2;
     
     public void makeSpring(Particle P1, Particle P2)
@@ -45,9 +46,20 @@ public class Spring : MonoBehaviour
         float springDamper = forceSpring + dampingForce;
         Vector3 force1 = springDamper * l;
         Vector3 force2 = -force1;
-
         p1.force += force1; 
         p2.force += force2;
+    }
+
+    public void BreakSpring()
+    {
+        ComputeForce();
+
+        float distance = Vector3.Distance(p1.transform.position, p2.position);
+
+        if (distance > breakDistance)
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
                 s.springConstant = k.value;
                 s.dampingFactor = b.value;
                 s.RestLength = l.value;
-                s.GetComponent<Spring>().ComputeForce();
+                s.GetComponent<Spring>().BreakSpring();
             }
         }
 
@@ -90,7 +90,10 @@ public class Spawner : MonoBehaviour
 
         foreach (Spring s in springs)
         {
-            Destroy(s.gameObject);
+            if (s != null)
+            {
+                Destroy(s.gameObject);
+            }
         }
 
         foreach(AeroForce t in triangles)
