@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
@@ -19,8 +19,8 @@
     </section>
 
     <section class="main-content">
-      <p><strong>Paul Chu</strong>
-<strong>AIE Year 2 Programming</strong>
+      <p><strong>Paul Chu</strong><br/>
+<strong>AIE Year 2 Programming</strong><br/>
 <strong>December 16th, 2015</strong></p>
 
 <h1>
@@ -66,160 +66,165 @@ The user can also spawn/reset the cloth simulation, also they can quit the appli
 </h2>
 
 <p>The program is split into five different scripts for organization. The main script in this project is Spawner.cs, this is the main part of the project, it handles line rendering for springs, spawning/resetting the cloth, pinning the corners for the grid, and exiting.
-II.2: Information about the functions
-File: Spawner.cs
-Class:Spawner
+
+<h2>
+    <a id="ii1-Information-about-the-functions" class="anchor" href="#ii1-Information-about-the-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>II.2: Information about the functions</strong>
+</h2>
+
+File: Spawner.cs<br />
+Class:Spawner<br />
 Data Members: MonoBehaviour</p>
 
-<p>Name: particles
+<p>Name: particles<br />
 Description: A list of class Particle</p>
 
-<p>Name: springs
+<p>Name: springs<br />
 Description: A list of class Spring</p>
 
-<p>Name: triangles
+<p>Name: triangles<br />
 Description: A list of class AeroForce</p>
 
-<p>Name: particle
+<p>Name: particle<br />
 Description: A class Particle gameobject</p>
 
-<p>Name: spring
+<p>Name: spring<br />
 Description: A class Spring gameobject</p>
 
-<p>Name: triangle
+<p>Name: triangle<br />
 Description: A class Aeroforce gameobject</p>
 
-<p>Name: width
+<p>Name: width<br />
 Description: a public integer for user to define width of cloth</p>
 
-<p>Name: height
+<p>Name: height<br />
 Description: a public integer of user to define height of cloth</p>
 
-<p>Name: vLim
+<p>Name: vLim<br />
 Description: a public float to limit velocity so it doesn’t cause errors.</p>
 
-<p>Name: k
+<p>Name: k<br />
 Description: spring force variable to increase/decrease slider value.</p>
 
-<p>Name: b
+<p>Name: b<br />
 Description: damping force variable to increase/decrease slider value for spring stiffness.</p>
 
-<p>Name: l
+<p>Name: l<br />
 Description: rest length variable to increase/decrease slider value for distance between particles.</p>
 
-<p>Name: air
+<p>Name: air<br />
 Description: air variable to increase/decrease slider value to blow onto cloth.</p>
 
-<p>Function: FixedUpdate
+<p>Function: FixedUpdate<br />
 Description: Computes and applies force to particle, spring, triangle and does the euler integration. </p>
 
-<p>Function: Update
+<p>Function: Update<br />
 Description: Updates all line rendering to each particle 1 to particle 2, and also checks if Esc or P is pressed to exit the program.</p>
 
-<p>Function: ResetCloth
+<p>Function: ResetCloth<br />
 Description: Destroys each particle, spring, and triangle, also the lists for all of them. Reset values on sliders and create new list of particles, spring, and triangles and call Spawn function to create Cloth, along with anchors at corners.</p>
 
-<p>Function: isPinned
+<p>Function: isPinned<br />
 Description: Pins all the particles at the corners of the cloth.</p>
 
-<p>Function: Exit
+<p>Function: Exit<br />
 Description: Exit application.</p>
 
-<p>Function: Spawn
-Parameters: n/a
+<p>Function: Spawn<br />
+Parameters: n/a<br />
 Description: It creates all particles in a 2D grid format, while we create the particles, springs connect to the previous particle that is created. So as the particles on the width are created, it connects a spring going to the left. Particles created on the height, are connected by going downward. After this, for diagonal, it goes left and right downward diagonal to connect as the grid is created. As the grid is created into a square like object, we cut those squares into triangles so we can use these triangles for Aerodynamic forces. </p>
 
-<p>File: Particle
-Class: Particle
+<p>File: Particle<br />
+Class: Particle<br />
 Data Members: MonoBehaviour</p>
 
-<p>Name: position
+<p>Name: position<br />
 Description: Getting and setting the position = transform.position </p>
 
-<p>Name: velocity
+<p>Name: velocity<br />
 Description: current velocity of the particle</p>
 
-<p>Name: force
+<p>Name: force<br />
 Description: the current force applied to the particle</p>
 
-<p>Name: mass
+<p>Name: mass<br />
 Description: the current mass the particle has.</p>
 
-<p>Name: isPinned
+<p>Name: isPinned<br />
 Description: if the particle is pinned or not.</p>
 
-<p>Function: Awake
+<p>Function: Awake<br/>
 Description: setting the current particle’s position to the transform.position which is the current gameobject.</p>
 
-<p>Function: ParticleMath
+<p>Function: ParticleMath<br />
 Description: Euler Integration upon particle, does acceleration = f / m; also velocity += (acceleration * deltaTime), position += (velocity * deltaTime);</p>
 
-<p>File: Spring
-Class: Spring
+<p>File: Spring<br />
+Class: Spring<br />
 Data Members: MonoBehaviour</p>
 
-<p>Name: springConstant
+<p>Name: springConstant<br />
 Description: A a constant for how strong the spring is</p>
 
-<p>Name: dampingFactor
+<p>Name: dampingFactor<br />
 Description: A constant for slowing down motion of the spring</p>
 
-<p>Name: RestLength
+<p>Name: RestLength<br />
 Description: The distance between two particles
-Name: Particle
+
+Name: Particle<br />
 Description: p1 and p2</p>
 
-<p>Function: makeSpring
-Parameters: Particle p1, Particle p2
+<p>Function: makeSpring<br />
+Parameters: Particle p1, Particle p2<br />
 Description: To connect the new particle that is created to the previous one</p>
 
-<p>Function: ComputeForce
+<p>Function: ComputeForce<br />
 Description: First we get the distance between p2 pos and p1 pos. Then we normalized e (distance between p2 pos and p1), then use the distance formula between them. After getting the length between them we use an equation to get Spring force. After that we get the linear damping force, after this, we turned all the 3D distances &amp; velocities to 1D. We compute spring back to 1D, and then turn that 1D force back into 3D force. After that we get spring damper by just adding spring force and damping force together. Then we find the 1D force and turn it back into 3D, and just add it to p1.force and p2.force.</p>
 
-<p>File: AeroForce
-Class: AeroForce
+<p>File: AeroForce<br />
+Class: AeroForce<br />
 Data Members: MonoBehaviour</p>
 
-<p>Name: Particle
+<p>Name: Particle<br />
 Description: Particles name p1, p2 ,p3</p>
 
-<p>Name: velAir
+<p>Name: velAir<br />
 Description: A force that applies itself on the cloth to make it appear wind or water. </p>
 
-<p>Name: drag
+<p>Name: drag<br />
 Description: Air resistance </p>
 
-<p>Name: Density
+<p>Name: Density<br />
 Description: The mass per volume of the velAir.</p>
 
-<p>Function: makeTriangle
+<p>Function: makeTriangle<br />
 Description: To connect Particle p1, p2, p3 all together to form a triangle.</p>
 
-<p>Function: AeroMath
+<p>Function: AeroMath<br />
 Description: First we find the velocity of the triangle. Then we subtract velTriangle by air velocity. Then we find the normal of the triangle, by doing a lot of math. After a lot of math, we use the Aerodyamic force equation which applies a force to each triangle that is on the cloth.</p>
 
-<p>File:SetText
-Class:SetText
+<p>File:SetText<br />
+Class:SetText<br />
 Data Members: MonoBehaviour</p>
 
-<p>Function: SetLabel
-Parameters(Slider slider)
+<p>Function: SetLabel<br />
+Parameters(Slider slider)<br />
 Description: The slider that is passed in, will turn it’s slider value to a string, to display the number it’s on.</p>
 
-<p>File: DragObject
-Class:DragObject
+<p>File: DragObject<br />
+Class:DragObject<br />
 Data Members: MonoBehaviour</p>
 
-<p>Name: screenPoint
+<p>Name: screenPoint<br />
 Description: It grabs the particle’s position from world to screen point</p>
 
-<p>Name: offset
+<p>Name: offset<br />
 Description: Calculate any difference between the particle world position and the mouse's Screen position converted to a world point.</p>
 
-<p>Function: OnMouseDown
+<p>Function: OnMouseDown<br />
 Description: Once the left mouse button is pressed, the user can grab the particle, and move it around.</p>
 
-<p>Function: OnMouseDrag
+<p>Function: OnMouseDrag<br />
 Description: The user can now drag the particle around the screen while keeping track of it in world space as the user inputs through screen space.</p>
 
 <h1>
@@ -233,12 +238,12 @@ Description: The user can now drag the particle around the screen while keeping 
 <h1>
 <a id="file-spawnercs" class="anchor" href="#file-spawnercs" aria-hidden="true"><span class="octicon octicon-link"></span></a>File: Spawner.cs</h1>
 
-<p>using UnityEngine;
+<pre><code>using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;</p>
+using UnityEngine.UI;
 
-<p>public class Spawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     public List particles = new List();
     public List springs = new List();
@@ -252,9 +257,9 @@ using UnityEngine.UI;</p>
     public Button exit, spawn;
     GameObject particles_;
     GameObject springs_;
-    GameObject triangle_;</p>
+    GameObject triangle_;
 
-<pre><code>void FixedUpdate()
+void FixedUpdate()
 {
     foreach (Particle p in particles)
     {
@@ -477,18 +482,17 @@ public void Spawn()
         }
     }
 }
+}
 </code></pre>
-
-<p>}</p>
 
 <h1>
 <a id="file-particlecs" class="anchor" href="#file-particlecs" aria-hidden="true"><span class="octicon octicon-link"></span></a>File: Particle.cs</h1>
 
-<p>class Particle: 
+<pre><code>class Particle: 
 using UnityEngine;
-using System.Collections;</p>
+using System.Collections;
 
-<p>public class Particle : MonoBehaviour
+public class Particle : MonoBehaviour
 {
     public Vector3 position // current pos of the particle in space
     {
@@ -498,9 +502,9 @@ using System.Collections;</p>
     public Vector3 velocity; // current velocity of the particle
     public Vector3 force;
     public float mass;
-    public bool isPinned;</p>
+    public bool isPinned;
 
-<pre><code>void Awake()
+void Awake()
 {
     position = transform.position;
 }
@@ -514,25 +518,24 @@ public void ParticleMath()
         position += (velocity * Time.deltaTime);
     }
 }
+}
 </code></pre>
-
-<p>}</p>
 
 <h1>
 <a id="file-springcs" class="anchor" href="#file-springcs" aria-hidden="true"><span class="octicon octicon-link"></span></a>File: Spring.cs</h1>
 
-<p>class Spring: 
+<pre><code>class Spring: 
 using UnityEngine;
-using System.Collections;</p>
+using System.Collections;
 
-<p>public class Spring : MonoBehaviour
+public class Spring : MonoBehaviour
 {
     public float springConstant;
     public float dampingFactor;
     public float RestLength;
-    public Particle p1, p2;</p>
+    public Particle p1, p2;
 
-<pre><code>public void makeSpring(Particle P1, Particle P2)
+public void makeSpring(Particle P1, Particle P2)
 {
     p1 = P1;
     p2 = P2;
@@ -555,24 +558,23 @@ public void ComputeForce()
     p1.force += force1;
     p2.force += force2;
 }
+}
 </code></pre>
-
-<p>}</p>
 
 <h1>
 <a id="file-aeroforcecs" class="anchor" href="#file-aeroforcecs" aria-hidden="true"><span class="octicon octicon-link"></span></a>File: AeroForce.cs</h1>
 
-<p>using UnityEngine;
-using System.Collections;</p>
+<pre><code>using UnityEngine;
+using System.Collections;
 
-<p>public class AeroForce : MonoBehaviour
+public class AeroForce : MonoBehaviour
 {
     Particle p1, p2, p3;
     public Vector3 velAir = new Vector3 (0, 0, 0);
     public float drag = 0.5f;
-    public float density = 1.0f;</p>
+    public float density = 1.0f;
 
-<pre><code>public void makeTriangle(Particle P1, Particle P2, Particle P3)
+public void makeTriangle(Particle P1, Particle P2, Particle P3)
 {
     p1 = P1;
     p2 = P2;
@@ -607,22 +609,21 @@ public void AeroMath()
     p2.force += aeroForce;
     p3.force += aeroForce;
 }
+}
 </code></pre>
-
-<p>}</p>
 
 <h1>
 <a id="file-dragobjectcs" class="anchor" href="#file-dragobjectcs" aria-hidden="true"><span class="octicon octicon-link"></span></a>File: DragObject.cs</h1>
 
-<p>using UnityEngine;
-using System.Collections;</p>
+<pre><code>using UnityEngine;
+using System.Collections;
 
-<p>public class DragObject : MonoBehaviour
+public class DragObject : MonoBehaviour
 {
     private Vector3 screenPoint;
-    private Vector3 offset;</p>
+    private Vector3 offset;
 
-<pre><code>private void OnMouseDown()
+private void OnMouseDown()
 {
     //translate the particle position from the world to Screen Point
     screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -639,30 +640,31 @@ private void OnMouseDrag()
     //update the position of the object in the world
     transform.position = currentPosition;
 }
+}
 </code></pre>
 
-<p>}</p>
 
 <h1>
 <a id="file-settextcs" class="anchor" href="#file-settextcs" aria-hidden="true"><span class="octicon octicon-link"></span></a>File: SetText.cs</h1>
 
-<p>using UnityEngine;
-using UnityEngine.UI;</p>
+<pre><code>using UnityEngine;
+using UnityEngine.UI;
 
-<p>public class SetText : MonoBehaviour
+public class SetText : MonoBehaviour
 {
     public void SetLabel(Slider slider)
     {
         gameObject.GetComponent().text = slider.value.ToString();
     }
-}</p>
+}
+</code></pre>
 
-<p>IV.2: Operating Directions
+<p>IV.2: Operating Directions<br/>
 To run this program, navigate through directory and click on build.exe or go to <a href="http://paulchu756.github.io/Physics/">http://paulchu756.github.io/Physics/</a>  (Please make sure you have build data folder with it).</p>
 
-<p>V.0: Instructions
-Left click: drag particles around in the scence.
-Right Click: rotate the camera on any axis(It is slow). 
+<p>V.0: Instructions Directions<br/>
+Left click: drag particles around in the scence.<br/>
+Right Click: rotate the camera on any axis(It is slow). <br/>
 Middle Mouse Button: To translate on x and y axis. </p>
 
       <footer class="site-footer">
@@ -670,9 +672,6 @@ Middle Mouse Button: To translate on x and y axis. </p>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-
     </section>
-
-  
   </body>
 </html>
