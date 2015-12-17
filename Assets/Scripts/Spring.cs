@@ -50,16 +50,16 @@ public class Spring : MonoBehaviour
         p2.force += force2;
     }
 
-    public void BreakSpring()
-    {
-        ComputeForce();
+    //public void BreakSpring()
+    //{
+    //    ComputeForce();
 
-        float distance = Vector3.Distance(p1.transform.position, p2.position);
+    //    float distance = Vector3.Distance(p1.transform.position, p2.position);
 
-        if (distance > breakDistance)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //    if (distance > breakDistance)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
 

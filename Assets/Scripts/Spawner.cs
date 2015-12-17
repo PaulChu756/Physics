@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
                 s.springConstant = k.value;
                 s.dampingFactor = b.value;
                 s.RestLength = l.value;
-                s.GetComponent<Spring>().BreakSpring();
+                s.GetComponent<Spring>().ComputeForce();
             }
         }
 
