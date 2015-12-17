@@ -592,4 +592,7 @@ public class SetText : MonoBehaviour
 IV.2: Operating Directions
 To run this program, navigate through directory and click on build.exe or go to http://paulchu756.github.io/Physics/  (Please make sure you have build data folder with it).
 
-
+V.0: Instructions
+Left click: drag particles around in the scence.
+Right Click: rotate the camera on any axis(It is slow). 
+Middle Mouse Button: To translate on x and y axis. 
