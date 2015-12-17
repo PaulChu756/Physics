@@ -63,7 +63,6 @@ Description: spring force variable to increase/decrease slider value.
 Name: b
 Description: damping force variable to increase/decrease slider value for spring stiffness.
 
-
 Name: l
 Description: rest length variable to increase/decrease slider value for distance between particles.
 
@@ -92,7 +91,6 @@ Description: It creates all particles in a 2D grid format, while we create the p
 File: Particle
 Class: Particle
 Data Members: MonoBehaviour
-
 
 Name: position
 Description: Getting and setting the position = transform.position 
@@ -130,7 +128,6 @@ Description: The distance between two particles
 Name: Particle
 Description: p1 and p2
 
-
 Function: makeSpring
 Parameters: Particle p1, Particle p2
 Description: To connect the new particle that is created to the previous one
@@ -161,7 +158,6 @@ Function: AeroMath
 Description: First we find the velocity of the triangle. Then we subtract velTriangle by air velocity. Then we find the normal of the triangle, by doing a lot of math. After a lot of math, we use the Aerodyamic force equation which applies a force to each triangle that is on the cloth.
 
 
-
 File:SetText
 Class:SetText
 Data Members: MonoBehaviour
@@ -185,7 +181,6 @@ Description: Once the left mouse button is pressed, the user can grab the partic
 
 Function: OnMouseDrag
 Description: The user can now drag the particle around the screen while keeping track of it in world space as the user inputs through screen space.
-
 
 III.0: Implementation Documentation
 III.1 Program Code
