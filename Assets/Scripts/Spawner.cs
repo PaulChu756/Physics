@@ -77,7 +77,7 @@ public class Spawner : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
         {
-            Exit();
+            Application.Quit();
         }
     }
 
@@ -128,12 +128,6 @@ public class Spawner : MonoBehaviour
         particles[height * width - width].isPinned = true; // Top left
         particles[0].isPinned = true; // Bottom Left
     }
-
-    public void Exit()
-    {
-        Application.Quit();
-    }
-
     public void Spawn()
     {
         particles_ = new GameObject();
