@@ -24,11 +24,8 @@ public class CameraMove : MonoBehaviour
         float Rx = 0;   // Rotation around the X-axis
         float Ry = 0;   // Rotation around the Y-axis
 
-        if (Input.GetMouseButton(2))    // Checks if the left mouse button is being clicked
-        {
-            Th = speed * Input.GetAxis("Mouse X") * Time.deltaTime; // Sets Th to the difference the horizontal movement of the mouse
-            Tv = speed * Input.GetAxis("Mouse Y") * Time.deltaTime; // Sets Tv to the difference the verticle movement of the mouse
-        }
+        Th = speed * Input.GetAxis("Horizontal") * Time.deltaTime; // Sets Th to the difference the horizontal movement of the mouse
+        Tv = speed * Input.GetAxis("Vertical") * Time.deltaTime; // Sets Tv to the difference the verticle movement of the mouse
 
         if (Input.GetMouseButton(1))    // Checks if the right mouse button is being clicked
         {
@@ -42,7 +39,7 @@ public class CameraMove : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") < 0) // Checks if the mouse wheele is being rolled backward
             transform.position -= transform.forward * speed * Time.deltaTime;   // Moves the camera backward
 
-        transform.Translate(-Th, -Tv, 0);                                   // Moves the camera: left, right, up, and down
+        transform.Translate(Th, Tv, 0);                                   // Moves the camera: left, right, up, and down
         transform.RotateAround(transform.position, transform.right, -Rx);   // Rotates the camera to look up
         transform.RotateAround(transform.position, Vector3.up, Ry);         // Rotates the camera to look down
 
