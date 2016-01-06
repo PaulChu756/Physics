@@ -1,28 +1,46 @@
 ﻿<!doctype html>
 <html lang="en-us">
   <head>
-    <title>Physics by PaulChu756</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <script src="TemplateData/UnityProgress.js"></script>
+
+    <title>Cloth Physics by PaulChu756</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Physics</title>
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <script src="TemplateData/UnityProgress.js"></script>
   </head>
   <body class="template">
-    <p class="header"><span>Unity WebGL Player | </span>Physics</p>
-    <div class="template-wrap clear">
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
-      <div class="logo"></div>
-      <div class="fullscreen"><img src="TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
-      <div class="title">Physics</div>
-    </div>
+
+      <section class="page-header">
+          <h1 class="project-name">Cloth Physics</h1>
+          <h2 class="project-tagline"></h2>
+          <a href="https://github.com/PaulChu756/Physics" class="btn">View on GitHub</a>
+          <a href="https://github.com/PaulChu756/Physics/zipball/master" class="btn">Download .zip</a>
+          <a href="https://github.com/PaulChu756/Physics/tarball/master" class="btn">Download .tar.gz</a>
+      </section>
+
+      <div class="template-wrap clear">
+          <center><canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="1020px"></canvas></center>
+          <div class="logo"></div>
+          <div class="fullscreen"><img src="TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
+          <p>
+              <center> <b> Instructions Directions </b> </center> <br />
+              <center> <b>Left click drag particles around in the scence.</b> </center><br />
+              <center> <b>Right Click rotate the camera on any axis(It is slow). </b> </center><br />
+              <center> <b>Middle Mouse Button To translate on x and y axis.</b> </center><br />
+              <center> <b>Sliders: </b> </center><br />
+              <center> <b>Spring Constant - how strong the springs are.</b> </center> <br />
+              <center> <b>Damping Factor - slowing down motion.</b> </center> <br />
+              <center> <b>Rest Length - distance between two particles. </b> </center><br />
+              <center> <b>Air - Force pushing on the z-axis.</b> </center> <br />
+              <center> <b>Height - Determines the height of the cloth.(Default is 3)</b> </center> <br />
+              <center> <b>Width - Determines the width of the cloth. (Default is 3)</b> </center> <br />
+          </p>
+      </div>
     <p class="footer">&laquo; created with <a href="http://unity3d.com/" title="Go to unity3d.com">Unity</a> &raquo;</p>
     <script type='text/javascript'>
   // connect to canvas
@@ -70,11 +88,11 @@
 <script src="Release/fileloader.js"></script>
 <script>if (!(!Math.fround)) {
   var script = document.createElement('script');
-  script.src = "Release/Build.js";
+  script.src = "Release/WebBuilt.js";
   document.body.appendChild(script);
 } else {
   var codeXHR = new XMLHttpRequest();
-  codeXHR.open('GET', 'Release/Build.js', true);
+  codeXHR.open('GET', 'Release/WebBuilt.js', true);
   codeXHR.onload = function() {
     var code = codeXHR.responseText;
     if (!Math.fround) { 
@@ -108,20 +126,12 @@ try {
   codeXHR.send(null);
 }
 </script>
-
-      <section class="page-header">
-          <h1 class="project-name">Physics</h1>
-          <h2 class="project-tagline"></h2>
-          <a href="https://github.com/PaulChu756/Physics" class="btn">View on GitHub</a>
-          <a href="https://github.com/PaulChu756/Physics/zipball/master" class="btn">Download .zip</a>
-          <a href="https://github.com/PaulChu756/Physics/tarball/master" class="btn">Download .tar.gz</a>
-      </section>
-
       <section class="main-content">
           <p>
-              <strong>Paul Chu</strong><br />
-              <strong>AIE Year 2 Programming</strong><br />
-              <strong>December 16th, 2015</strong>
+              <h2>
+                  <strong>Paul Chu</strong><br />
+                  <strong>AIE Year 2 Programming</strong><br />
+              </h2>
           </p>
 
           <h1>
@@ -818,22 +828,8 @@ public class SetText : MonoBehaviour
     }
 }
 </code></pre>
-
-          <p>
-              IV.2: Operating Directions<br />
-              To run this program, navigate through directory and click on build.exe or go to <a href="http://paulchu756.github.io/Physics/">http://paulchu756.github.io/Physics/</a>  (Please make sure you have build data folder with it).
-          </p>
-
-          <p>
-              V.0: Instructions Directions<br />
-              Left click: drag particles around in the scence.<br />
-              Right Click: rotate the camera on any axis(It is slow). <br />
-              Middle Mouse Button: To translate on x and y axis.
-          </p>
-
           <footer class="site-footer">
               <span class="site-footer-owner"><a href="https://github.com/PaulChu756/Physics">Physics</a> is maintained by <a href="https://github.com/PaulChu756">PaulChu756</a>.</span>
-
               <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
           </footer>
       </section>
