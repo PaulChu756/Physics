@@ -31,23 +31,7 @@ Module.expectedDataFileDownloads++;
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
   
       var REMOTE_PACKAGE_SIZE = 4253487;
-<<<<<<< HEAD
       var PACKAGE_UUID = '8e2c6d84-1feb-4db9-a6f2-dd286d2f30ca';
-=======
-<<<<<<< HEAD
-      var PACKAGE_UUID = '8e2c6d84-1feb-4db9-a6f2-dd286d2f30ca';
-=======
-<<<<<<< HEAD
-      var PACKAGE_UUID = '8e2c6d84-1feb-4db9-a6f2-dd286d2f30ca';
-=======
-<<<<<<< HEAD
-      var PACKAGE_UUID = '98a33425-1b32-468b-a992-55550a678a3d';
-=======
-      var PACKAGE_UUID = '21476d99-bdae-4bd6-abcc-2719dbf5b7d1';
->>>>>>> origin/gh-pages
->>>>>>> origin/gh-pages
->>>>>>> 6338c6f896a38ea3b45227a81f18dcf61a52ee86
->>>>>>> c5b6c679e3e7fa517d330fd0b14b64f35b2d9eeb
     
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
