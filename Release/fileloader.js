@@ -31,7 +31,11 @@ Module.expectedDataFileDownloads++;
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
   
       var REMOTE_PACKAGE_SIZE = 4253487;
+<<<<<<< HEAD
       var PACKAGE_UUID = '98a33425-1b32-468b-a992-55550a678a3d';
+=======
+      var PACKAGE_UUID = '21476d99-bdae-4bd6-abcc-2719dbf5b7d1';
+>>>>>>> origin/gh-pages
     
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
