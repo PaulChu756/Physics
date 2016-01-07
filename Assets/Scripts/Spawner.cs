@@ -19,6 +19,10 @@ public class Spawner : MonoBehaviour
     GameObject springs_;
     GameObject triangle_;
 
+    void Awake()
+    {
+        ResetCloth();
+    }
     void FixedUpdate()
     {
         foreach (Particle p in particles)
